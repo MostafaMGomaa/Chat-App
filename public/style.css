@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300&family=Roboto+Mono&family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300&family=Roboto+Mono&family=Source+Sans+Pro&display=swap");
 body,
 html {
   min-height: 100vh;
@@ -8,12 +8,15 @@ html {
   margin: 0px;
 }
 * {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-.landing-bg {
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   background-image: linear-gradient(
     to bottom right,
@@ -24,44 +27,56 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .landing-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.2fr 1.5fr 1.2fr 1.8fr;
+  grid-template-areas:
+    "img img form form"
+    "img img form form"
+    "img img form form"
+    "img img form form";
   font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 2;
   width: 100%;
   height: 70%;
 }
 
 .landing-form {
-  position: absolute;
-  float: right;
-  top: 50%;
-  left: 70%;
-  transform: translate(-50%, -50%);
+  grid-area: form;
+  display: flex;
+  flex-direction: column;
   background-color: #f1f1f1;
-  width: 40%;
+  width: 100%;
   height: 100%;
   border-radius: 0 10px 10px 0;
-  padding: 15px;
-  box-shadow: 8px 8px rgba(0, 0, 0, 0.199);
+  padding: 20px;
+  border: 3px solid rgba(0, 0, 0);
+  border-style: solid solid solid none;
+  box-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0);
+  margin: 0;
+  min-height: 10vh;
+  max-height: 70vh;
 }
 .landing-form__img {
-  float: left;
-  background-image: url('img/background1.jpg');
-  width: 50%;
+  grid-area: img;
+  background-image: url("img/background1.jpg");
+  width: 100%;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px 0 0 10px;
-  box-shadow: 8px 8px rgba(0, 0, 0, 0.199);
+  border: 3px solid rgba(0, 0, 0);
+  border-style: solid none solid solid;
+  box-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0);
+  margin: 0;
 }
 .gradient-heading {
-  font-family: 'Roboto Mono', monospace;
+  grid-area: logo;
+  grid-area: form;
+  font-family: "Roboto Mono", monospace;
   margin: 10px;
   padding: 10px;
   background-image: linear-gradient(45deg, #e06387, #8656c5);
@@ -70,6 +85,14 @@ html {
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
+
+.room-area {
+  grid-area: room;
+}
+.username-area {
+  grid-area: username;
+}
+
 .room-txt,
 .room,
 .username-txt,
@@ -78,12 +101,15 @@ html {
   position: relative;
   display: block;
   margin: 10px;
-  top: 10%;
+  top: 10px;
 }
 .room,
 .username {
-  width: 20rem;
-  height: 2rem;
+  display: block;
+  min-width: 30rem;
+  max-width: fit-content;
+  min-height: 2rem;
+  max-height: fit-content;
   background: rgba(211, 210, 210, 0.1);
   border: none;
   border-bottom: 3px solid rgb(255, 72, 72);
@@ -104,26 +130,51 @@ html {
   color: blueviolet;
 }
 .btn__start-chat {
-  font-family: 'Roboto Mono', monospace;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  font-family: "Roboto Mono", monospace;
   margin-top: 40px;
   margin-left: 60px;
   background-image: linear-gradient(45deg, #e06387, #8656c5);
   color: #ffffff;
-  width: 200px;
+  width: 400px;
   transition: ease-in 0.3s;
 }
 .btn__start-chat:hover {
-  margin-top: 50px;
-  box-shadow: inset 300px 0 0 0 rgb(243, 115, 92);
-  border: #000000;
+  margin-bottom: 10px;
+  box-shadow: inset 400px 0 0 0 rgb(243, 115, 92);
+  border-style: solid;
+  border-color: #000000;
 }
 
 .star {
   color: red;
 }
 /* chat page*/
+.chat_page-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 0.5fr 0.9fr 0.2fr 0.1fr;
+  grid-template-rows: 0.2fr 1.2fr 1fr 0.8fr;
+  grid-template-areas:
+    "nav nav nav nav"
+    "chat-left messages-container messages-container messages-container"
+    "chat-left messages-container messages-container messages-container"
+    "chat-left sending-msg sending-msg sending-msg";
+  grid-gap: 0.2rem;
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(33, 33, 95),
+    rgb(78, 15, 73)
+  );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .navbar {
   border-bottom: 3px solid rgb(255, 255, 255);
+  grid-area: nav;
 }
 .nav__logo-txt {
   color: white;
@@ -131,7 +182,6 @@ html {
 .input__search {
   margin: auto;
   width: 10rem;
-  height: fit-content;
   background-color: #70707065;
   border: none;
 }
@@ -148,46 +198,18 @@ html {
   width: 2rem;
   margin: 20px;
 }
-.chat_page-bg {
-  min-height: 87.7%;
-  background-image: linear-gradient(
-    to bottom left,
-    rgb(33, 33, 95),
-    rgb(78, 15, 73)
-  );
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 0;
-}
-.chat_page-container {
-  display: flex;
-  position: absolute;
-  top: 12%;
-  left: 10px;
-  max-width: 102rem;
-  width: 102rem;
-  margin: 10px;
-  overflow: hidden;
-  z-index: 2;
-  height: 85%;
-  padding: 10px;
-}
-.chat-right {
-  position: static;
-  display: flex;
-  float: left;
-  flex-direction: column;
-  width: 15rem;
-  max-width: 20rem;
-  height: 70%;
-  max-height: 100%;
-  border-right: 3px solid rgb(255, 255, 255);
-  margin-top: 50px;
+/* Left part */
+.chat-left {
+  grid-area: chat-left;
+  border-right: solid 1px;
+  border-color: #ffffff;
+  /* resize: horizontal; */
 }
 .messages-icon,
 .users-icon {
   width: 40px;
+  margin: 10px;
+  padding: 5px;
 }
 .messages-heading,
 .users-heading {
@@ -198,35 +220,32 @@ html {
   background-color: #f1f1f125;
   height: 50px;
   border-radius: 10px;
+  width: 15rem;
 }
 .card-txt {
   text-align: center;
   color: #bf8eff;
   padding: 10px;
 }
-.chat-left {
-  float: left;
-}
+
+/* Right part */
 .messages-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 90%;
-  overflow: auto;
+  grid-area: messages-container;
+  overflow-y: scroll;
+  min-height: 70%;
+  max-height: auto;
+  height: 40rem;
 }
 .sending-msg {
-  height: fit-content;
-  border: none;
-  bottom: 0cm;
+  grid-area: sending-msg;
+  margin: 10px 20px;
 }
 .input__msg {
-  margin-left: 10px;
-  height: 2.5rem;
+  height: 3rem;
   width: 70rem;
-  max-width: 70rem;
 }
 .input__msg:focus {
-  outline: red;
+  outline: rgb(0, 0, 0);
 }
 .btn__send {
   height: 3rem;
@@ -267,4 +286,18 @@ html {
   margin: 0;
   color: #000000;
   text-align: left;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
