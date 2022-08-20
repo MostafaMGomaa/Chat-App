@@ -8,9 +8,9 @@
 
 ### Backend
 
-- Node.js
-- Express
-- Socket.io
+- Node.js for implementing server .
+- Express.js is the web server framework.
+- Socket.io to use websockets
 - momentjs
 
 ### Forntend
